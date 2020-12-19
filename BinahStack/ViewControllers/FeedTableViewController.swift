@@ -10,12 +10,20 @@ import UIKit
 class FeedTableViewController: UITableViewController {
     // MARK: - Constants
     private struct Constants {
+        static let initialFilter = Filter.answered
+        static let title = "BinahStack"
         static let cellId = NSStringFromClass(FeedTableViewCell.classForCoder()).components(separatedBy: ".").last!
     }
     
     // MARK: - Props
     private weak var router: AppRouter?
     private let questionListViewModel: QuestionListViewModel!
+    private lazy var feedTableNavigationItem = {
+        return FeedTableNavigationItem(title: Constants.title, filter: Constants.initialFilter) { [weak self] filter in
+            self?.resetData()
+            self?.loadData(filter: filter)
+        }
+    }()
     
     // MARK: - Lifecycle
     init(router: AppRouter) {
@@ -32,10 +40,24 @@ class FeedTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData(filter: Filter.answered)
+        loadData(filter: activeFilter)
     }
     
     // MARK: - Setup
+    private var activeFilter: Filter {
+        get {
+            return feedTableNavigationItem.filter
+        }
+        set {
+            feedTableNavigationItem.filter = newValue
+        }
+    }
+    
+    private func resetData() {
+        questionListViewModel.clearData()
+        tableView.reloadData()
+    }
+    
     private func setupTableView() {
         tableView.prefetchDataSource = self
         tableView.separatorInset = .zero
@@ -44,6 +66,10 @@ class FeedTableViewController: UITableViewController {
     
     private func registerCell() {
         tableView.register(UINib(nibName: Constants.cellId, bundle: .main), forCellReuseIdentifier: Constants.cellId)
+    }
+    
+    override var navigationItem: UINavigationItem {
+        return feedTableNavigationItem
     }
     
     // MARK: - Helpers
@@ -81,7 +107,7 @@ class FeedTableViewController: UITableViewController {
 extension FeedTableViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if indexPaths.contains(where: isLoadingCell) {
-            loadData(filter: Filter.answered)
+            loadData(filter: activeFilter)
         }
     }
 }
@@ -89,6 +115,7 @@ extension FeedTableViewController: UITableViewDataSourcePrefetching {
 extension FeedTableViewController: QuestionListViewModelDelegate {
     func loadSuccess(newIndexPaths: [IndexPath]?, filter: Filter) {
         guard let newIndexPaths = newIndexPaths else {
+            activeFilter = filter
             tableView.reloadData()
             return
         }

@@ -39,4 +39,19 @@ class BinahStackUITests: XCTestCase {
             }
         }
     }
+    
+    func testFilterButton() throws {
+        let app = XCUIApplication()
+        app.launch()
+        XCUIDevice.shared.orientation = .portrait
+        let firstAnsweredQuestionTitle = app.tables.children(matching: .cell).element(boundBy: 0)/*@START_MENU_TOKEN@*/.staticTexts["idQuestionTitleLabel"]/*[[".staticTexts[\"Answered1\"]",".staticTexts[\"idQuestionTitleLabel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        XCTAssertEqual(firstAnsweredQuestionTitle.label, "Answered1")
+        
+        app.navigationBars["BinahStack"].buttons["Answered"].tap()
+        
+        let firstUnAnsweredQuestionTitle = app.tables.children(matching: .cell).element(boundBy: 0)/*@START_MENU_TOKEN@*/.staticTexts["idQuestionTitleLabel"]/*[[".staticTexts[\"Answered1\"]",".staticTexts[\"idQuestionTitleLabel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        XCTAssertEqual(firstUnAnsweredQuestionTitle.label, "UnAnswered1")
+        
+        XCTAssertTrue(app.navigationBars["BinahStack"].buttons["UnAnswered"].exists)
+    }
 }

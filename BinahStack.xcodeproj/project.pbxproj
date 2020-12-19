@@ -25,6 +25,7 @@
 		1F9DACD8258E6D94006E6581 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACD7258E6D94006E6581 /* Filter.swift */; };
 		1F9DACDD258E6D9D006E6581 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACDC258E6D9D006E6581 /* Owner.swift */; };
 		1F9DACE5258E70CF006E6581 /* QuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACE4258E70CF006E6581 /* QuestionListViewModel.swift */; };
+		1F9DACED258E776D006E6581 /* FeedTableNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACEC258E776D006E6581 /* FeedTableNavigationItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		1F9DACD7258E6D94006E6581 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		1F9DACDC258E6D9D006E6581 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		1F9DACE4258E70CF006E6581 /* QuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListViewModel.swift; sourceTree = "<group>"; };
+		1F9DACEC258E776D006E6581 /* FeedTableNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableNavigationItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			children = (
 				1F9DAC7D258E4248006E6581 /* Router.swift */,
 				1F9DAC85258E4255006E6581 /* AppRouter.swift */,
+				1F9DACEC258E776D006E6581 /* FeedTableNavigationItem.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F9DACC2258E6CC6006E6581 /* Source.swift in Sources */,
+				1F9DACED258E776D006E6581 /* FeedTableNavigationItem.swift in Sources */,
 				1F9DACDD258E6D9D006E6581 /* Owner.swift in Sources */,
 				1F9DAC86258E4255006E6581 /* AppRouter.swift in Sources */,
 				1F9DACD8258E6D94006E6581 /* Filter.swift in Sources */,
