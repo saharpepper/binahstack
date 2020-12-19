@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1F9DAC41258E3C63006E6581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DAC40258E3C63006E6581 /* AppDelegate.swift */; };
-		1F9DAC43258E3C63006E6581 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DAC42258E3C63006E6581 /* SceneDelegate.swift */; };
 		1F9DAC45258E3C63006E6581 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DAC44258E3C63006E6581 /* ViewController.swift */; };
-		1F9DAC48258E3C63006E6581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9DAC46258E3C63006E6581 /* Main.storyboard */; };
 		1F9DAC4A258E3C64006E6581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F9DAC49258E3C64006E6581 /* Assets.xcassets */; };
 		1F9DAC4D258E3C64006E6581 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9DAC4B258E3C64006E6581 /* LaunchScreen.storyboard */; };
 		1F9DAC58258E3C64006E6581 /* BinahStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DAC57258E3C64006E6581 /* BinahStackTests.swift */; };
 		1F9DAC63258E3C64006E6581 /* BinahStackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DAC62258E3C64006E6581 /* BinahStackUITests.swift */; };
+		1F9DAC7E258E4248006E6581 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DAC7D258E4248006E6581 /* Router.swift */; };
+		1F9DAC86258E4255006E6581 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DAC85258E4255006E6581 /* AppRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,9 +37,7 @@
 /* Begin PBXFileReference section */
 		1F9DAC3D258E3C63006E6581 /* BinahStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinahStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F9DAC40258E3C63006E6581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F9DAC42258E3C63006E6581 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1F9DAC44258E3C63006E6581 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1F9DAC47258E3C63006E6581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F9DAC49258E3C64006E6581 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F9DAC4C258E3C64006E6581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F9DAC4E258E3C64006E6581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +47,8 @@
 		1F9DAC5E258E3C64006E6581 /* BinahStackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinahStackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F9DAC62258E3C64006E6581 /* BinahStackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinahStackUITests.swift; sourceTree = "<group>"; };
 		1F9DAC64258E3C64006E6581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F9DAC7D258E4248006E6581 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		1F9DAC85258E4255006E6581 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +99,9 @@
 		1F9DAC3F258E3C63006E6581 /* BinahStack */ = {
 			isa = PBXGroup;
 			children = (
+				1F9DAC7C258E41D5006E6581 /* Navigation */,
 				1F9DAC40258E3C63006E6581 /* AppDelegate.swift */,
-				1F9DAC42258E3C63006E6581 /* SceneDelegate.swift */,
 				1F9DAC44258E3C63006E6581 /* ViewController.swift */,
-				1F9DAC46258E3C63006E6581 /* Main.storyboard */,
 				1F9DAC49258E3C64006E6581 /* Assets.xcassets */,
 				1F9DAC4B258E3C64006E6581 /* LaunchScreen.storyboard */,
 				1F9DAC4E258E3C64006E6581 /* Info.plist */,
@@ -126,6 +125,15 @@
 				1F9DAC64258E3C64006E6581 /* Info.plist */,
 			);
 			path = BinahStackUITests;
+			sourceTree = "<group>";
+		};
+		1F9DAC7C258E41D5006E6581 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				1F9DAC7D258E4248006E6581 /* Router.swift */,
+				1F9DAC85258E4255006E6581 /* AppRouter.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +241,6 @@
 			files = (
 				1F9DAC4D258E3C64006E6581 /* LaunchScreen.storyboard in Resources */,
 				1F9DAC4A258E3C64006E6581 /* Assets.xcassets in Resources */,
-				1F9DAC48258E3C63006E6581 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F9DAC86258E4255006E6581 /* AppRouter.swift in Sources */,
 				1F9DAC45258E3C63006E6581 /* ViewController.swift in Sources */,
+				1F9DAC7E258E4248006E6581 /* Router.swift in Sources */,
 				1F9DAC41258E3C63006E6581 /* AppDelegate.swift in Sources */,
-				1F9DAC43258E3C63006E6581 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +304,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1F9DAC46258E3C63006E6581 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F9DAC47258E3C63006E6581 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1F9DAC4B258E3C64006E6581 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -439,6 +439,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2ZU2BY35K;
 				INFOPLIST_FILE = BinahStack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,6 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2ZU2BY35K;
 				INFOPLIST_FILE = BinahStack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -477,7 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2ZU2BY35K;
 				INFOPLIST_FILE = BinahStackTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,7 +501,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2ZU2BY35K;
 				INFOPLIST_FILE = BinahStackTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -520,6 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2ZU2BY35K;
 				INFOPLIST_FILE = BinahStackUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -540,6 +543,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2ZU2BY35K;
 				INFOPLIST_FILE = BinahStackUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
