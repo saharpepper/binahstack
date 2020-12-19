@@ -18,7 +18,7 @@ class FeedTableViewCell: UITableViewCell {
             votesNumberLabel.text = question.votesCount
             answersNumberLabel.text = question.answersCount
             titleLabel.text = question.title
-            creationLabel.text = question.creationText
+            creationLabel.text = question.relativeCreationText
             
             tagsStackView.subviews.forEach({ if let label = $0 as? UILabel { label.removeFromSuperview() }})
             for (index, tag) in question.tags.enumerated() {

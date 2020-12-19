@@ -19,11 +19,11 @@ class QuestionViewModel {
     
     // MARK: - Accessors
     var answersCount: String {
-        return String(question.answers)
+        return String(question.answerCount)
     }
     
     var votesCount: String {
-        return String(question.votes)
+        return String(question.score)
     }
     
     var title: String {
@@ -34,7 +34,12 @@ class QuestionViewModel {
         return question.tags
     }
     
-    var creationText: String {
-        return "Created by \(question.user)"
+    var relativeCreationText: String {
+        let creationDate = Date(timeIntervalSince1970: question.creationDate)
+        return "Created \(creationDate.friendlyTimeAgo()) by \(question.owner.displayName)"
+    }
+    
+    var link: String {
+        return question.link
     }
 }

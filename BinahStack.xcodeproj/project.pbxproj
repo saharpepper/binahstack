@@ -19,6 +19,12 @@
 		1F9DACA6258E5286006E6581 /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F9DACA5258E5286006E6581 /* FeedTableViewCell.xib */; };
 		1F9DACB0258E535D006E6581 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACAF258E535D006E6581 /* QuestionViewModel.swift */; };
 		1F9DACB6258E53AB006E6581 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACB5258E53AB006E6581 /* Question.swift */; };
+		1F9DACC2258E6CC6006E6581 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACC1258E6CC6006E6581 /* Source.swift */; };
+		1F9DACCA258E6CD3006E6581 /* MockSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACC9258E6CD3006E6581 /* MockSource.swift */; };
+		1F9DACD0258E6D4E006E6581 /* Date+Past.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACCF258E6D4E006E6581 /* Date+Past.swift */; };
+		1F9DACD8258E6D94006E6581 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACD7258E6D94006E6581 /* Filter.swift */; };
+		1F9DACDD258E6D9D006E6581 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACDC258E6D9D006E6581 /* Owner.swift */; };
+		1F9DACE5258E70CF006E6581 /* QuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DACE4258E70CF006E6581 /* QuestionListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		1F9DACA5258E5286006E6581 /* FeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
 		1F9DACAF258E535D006E6581 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		1F9DACB5258E53AB006E6581 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		1F9DACC1258E6CC6006E6581 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		1F9DACC9258E6CD3006E6581 /* MockSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSource.swift; sourceTree = "<group>"; };
+		1F9DACCF258E6D4E006E6581 /* Date+Past.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Past.swift"; sourceTree = "<group>"; };
+		1F9DACD7258E6D94006E6581 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		1F9DACDC258E6D9D006E6581 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		1F9DACE4258E70CF006E6581 /* QuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +119,10 @@
 		1F9DAC3F258E3C63006E6581 /* BinahStack */ = {
 			isa = PBXGroup;
 			children = (
+				1F9DACCE258E6D1F006E6581 /* Extensions */,
 				1F9DACB4258E539D006E6581 /* Models */,
 				1F9DAC7C258E41D5006E6581 /* Navigation */,
+				1F9DACC0258E6CB4006E6581 /* Source */,
 				1F9DAC93258E51F1006E6581 /* ViewControllers */,
 				1F9DAC9C258E5238006E6581 /* Views */,
 				1F9DACAD258E532A006E6581 /* ViewModels */,
@@ -167,6 +181,7 @@
 		1F9DACAD258E532A006E6581 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1F9DACE4258E70CF006E6581 /* QuestionListViewModel.swift */,
 				1F9DACAF258E535D006E6581 /* QuestionViewModel.swift */,
 			);
 			path = ViewModels;
@@ -175,9 +190,28 @@
 		1F9DACB4258E539D006E6581 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1F9DACD7258E6D94006E6581 /* Filter.swift */,
 				1F9DACB5258E53AB006E6581 /* Question.swift */,
+				1F9DACDC258E6D9D006E6581 /* Owner.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1F9DACC0258E6CB4006E6581 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1F9DACC1258E6CC6006E6581 /* Source.swift */,
+				1F9DACC9258E6CD3006E6581 /* MockSource.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		1F9DACCE258E6D1F006E6581 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1F9DACCF258E6D4E006E6581 /* Date+Past.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,12 +344,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F9DACC2258E6CC6006E6581 /* Source.swift in Sources */,
+				1F9DACDD258E6D9D006E6581 /* Owner.swift in Sources */,
 				1F9DAC86258E4255006E6581 /* AppRouter.swift in Sources */,
+				1F9DACD8258E6D94006E6581 /* Filter.swift in Sources */,
 				1F9DACB6258E53AB006E6581 /* Question.swift in Sources */,
 				1F9DACB0258E535D006E6581 /* QuestionViewModel.swift in Sources */,
 				1F9DAC9E258E525F006E6581 /* FeedTableViewCell.swift in Sources */,
+				1F9DACE5258E70CF006E6581 /* QuestionListViewModel.swift in Sources */,
+				1F9DACD0258E6D4E006E6581 /* Date+Past.swift in Sources */,
 				1F9DAC95258E5220006E6581 /* FeedTableViewController.swift in Sources */,
 				1F9DAC7E258E4248006E6581 /* Router.swift in Sources */,
+				1F9DACCA258E6CD3006E6581 /* MockSource.swift in Sources */,
 				1F9DAC41258E3C63006E6581 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
