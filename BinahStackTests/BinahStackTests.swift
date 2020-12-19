@@ -30,4 +30,22 @@ class BinahStackTests: XCTestCase {
         }
     }
 
+    func testDatePastExtension() throws {
+        let oneSecAgoDate = dateDiff(seconds: 1)
+        let oneMinAgoDate = dateDiff(seconds: 1*60)
+        let oneHourAgoDate = dateDiff(seconds: 1*60*60)
+        let oneDayAgoDate = dateDiff(seconds: 1*60*60*24)
+        let oneWeekAgoDate = dateDiff(seconds: 1*60*60*24*7)
+        let oneMonthAgoDate = dateDiff(seconds: 1*60*60*24*7*5)
+        XCTAssertEqual(oneSecAgoDate.friendlyTimeAgo(), "1 sec ago")
+        XCTAssertEqual(oneMinAgoDate.friendlyTimeAgo(), "1 min ago")
+        XCTAssertEqual(oneHourAgoDate.friendlyTimeAgo(), "1 hours ago")
+        XCTAssertEqual(oneDayAgoDate.friendlyTimeAgo(), "1 days ago")
+        XCTAssertEqual(oneWeekAgoDate.friendlyTimeAgo(), "1 weeks ago")
+        XCTAssertEqual(oneMonthAgoDate.friendlyTimeAgo(), oneMonthAgoDate.friendlyDate())
+    }
+    
+    private func dateDiff(seconds: TimeInterval) -> Date {
+        return Date(timeIntervalSinceReferenceDate: Date().timeIntervalSinceReferenceDate - seconds)
+    }
 }
