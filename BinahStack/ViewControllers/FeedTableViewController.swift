@@ -13,6 +13,7 @@ class FeedTableViewController: UITableViewController {
         static let initialFilter = Filter.answered
         static let title = "BinahStack"
         static let cellId = NSStringFromClass(FeedTableViewCell.classForCoder()).components(separatedBy: ".").last!
+        static let generalError = "Oops... something went wrong!"
     }
     
     // MARK: - Props
@@ -26,9 +27,9 @@ class FeedTableViewController: UITableViewController {
     }()
     
     // MARK: - Lifecycle
-    init(router: AppRouter) {
+    init(router: AppRouter, source: Source) {
         self.router = router
-        questionListViewModel = QuestionListViewModel(source: MockSource())
+        questionListViewModel = QuestionListViewModel(source: source)
         super.init(nibName: nil, bundle: nil)
         questionListViewModel.delegate = self
         setupTableView()
@@ -44,6 +45,30 @@ class FeedTableViewController: UITableViewController {
     }
     
     // MARK: - Setup
+    private func setupTableView() {
+        tableView.prefetchDataSource = self
+        tableView.separatorInset = .zero
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshAction), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        registerCell()
+    }
+    
+    private func registerCell() {
+        tableView.register(UINib(nibName: Constants.cellId, bundle: .main), forCellReuseIdentifier: Constants.cellId)
+    }
+    
+    override var navigationItem: UINavigationItem {
+        return feedTableNavigationItem
+    }
+    
+    // MARK: - Actions
+    @objc private func refreshAction() {
+        resetData()
+        loadData(filter: activeFilter, withLoader: false)
+    }
+    
+    // MARK: - Helpers
     private var activeFilter: Filter {
         get {
             return feedTableNavigationItem.filter
@@ -58,23 +83,18 @@ class FeedTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    private func setupTableView() {
-        tableView.prefetchDataSource = self
-        tableView.separatorInset = .zero
-        registerCell()
-    }
-    
-    private func registerCell() {
-        tableView.register(UINib(nibName: Constants.cellId, bundle: .main), forCellReuseIdentifier: Constants.cellId)
-    }
-    
-    override var navigationItem: UINavigationItem {
-        return feedTableNavigationItem
-    }
-    
-    // MARK: - Helpers
-    private func loadData(filter: Filter) {
+    private func loadData(filter: Filter, withLoader loader: Bool = true) {
+        if loader {
+            tableView.addLoader()
+        }
         questionListViewModel.loadData(filter: filter)
+    }
+    
+    private func removeLoaders() {
+        if tableView.refreshControl!.isRefreshing {
+            tableView.refreshControl!.endRefreshing()
+        }
+        tableView.removeLoader()
     }
     
     private func isLoadingCell(for indexPath: IndexPath) -> Bool {
@@ -114,6 +134,7 @@ extension FeedTableViewController: UITableViewDataSourcePrefetching {
 
 extension FeedTableViewController: QuestionListViewModelDelegate {
     func loadSuccess(newIndexPaths: [IndexPath]?, filter: Filter) {
+        removeLoaders()
         guard let newIndexPaths = newIndexPaths else {
             activeFilter = filter
             tableView.reloadData()
@@ -125,5 +146,13 @@ extension FeedTableViewController: QuestionListViewModelDelegate {
     }
     
     func loadFailed(error: Error?) {
+        removeLoaders()
+        let alert = UIAlertController(title: "Error",
+                                      message: error?.localizedDescription ?? Constants.generalError,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default) { [weak self] _ in
+            self?.loadData(filter: self!.activeFilter)
+        })
+        self.present(alert, animated: true, completion: nil)
     }
 }

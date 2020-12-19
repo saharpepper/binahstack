@@ -27,7 +27,7 @@ class QuestionViewModel {
     }
     
     var title: String {
-        return question.title
+        return question.title.htmlDecoded
     }
     
     var tags: [String] {
@@ -36,7 +36,7 @@ class QuestionViewModel {
     
     var relativeCreationText: String {
         let creationDate = Date(timeIntervalSince1970: question.creationDate)
-        return "Created \(creationDate.friendlyTimeAgo()) by \(question.owner.displayName)"
+        return "Created \(creationDate.friendlyTimeAgo()) by \(question.owner.displayName.htmlDecoded)"
     }
     
     var link: String {

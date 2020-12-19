@@ -15,7 +15,19 @@ class AppRouter: Router {
     }
 
     func start() {
-        let feedTableViewController = FeedTableViewController(router: self)
+        #if DEBUG
+        let source: Source = isTestMode ? MockSource() : NetworkSource()
+        #else
+        let source = NetworkSource()
+        #endif
+        let feedTableViewController = FeedTableViewController(router: self, source: source)
         navigationController.pushViewController(feedTableViewController, animated: false)
     }
+    
+    #if DEBUG
+    private var isTestMode: Bool {
+        let arguments = ProcessInfo.processInfo.arguments
+        return arguments.contains("UI_TESTING")
+    }
+    #endif
 }
