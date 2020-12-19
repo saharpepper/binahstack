@@ -14,11 +14,13 @@ class FeedTableViewController: UITableViewController {
         static let title = "BinahStack"
         static let cellId = NSStringFromClass(FeedTableViewCell.classForCoder()).components(separatedBy: ".").last!
         static let generalError = "Oops... something went wrong!"
+        static let refreshThresholdMinutes = 10.0
     }
     
     // MARK: - Props
     private weak var router: AppRouter?
     private let questionListViewModel: QuestionListViewModel!
+    private var autoRefreshController: AutoRefreshController!
     private lazy var feedTableNavigationItem = {
         return FeedTableNavigationItem(title: Constants.title, filter: Constants.initialFilter) { [weak self] filter in
             self?.resetData()
@@ -33,6 +35,8 @@ class FeedTableViewController: UITableViewController {
         super.init(nibName: nil, bundle: nil)
         questionListViewModel.delegate = self
         setupTableView()
+        autoRefreshController = AutoRefreshController(delegate: self,
+                                                      thresholdInSeconds: Constants.refreshThresholdMinutes*60)
     }
     
     required init?(coder: NSCoder) {
@@ -122,6 +126,11 @@ class FeedTableViewController: UITableViewController {
             return UITableViewCell()
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let question = questionListViewModel.questionAt(index: indexPath.row)
+        router?.details(question: question)
+    }
 }
 
 extension FeedTableViewController: UITableViewDataSourcePrefetching {
@@ -134,6 +143,7 @@ extension FeedTableViewController: UITableViewDataSourcePrefetching {
 
 extension FeedTableViewController: QuestionListViewModelDelegate {
     func loadSuccess(newIndexPaths: [IndexPath]?, filter: Filter) {
+        autoRefreshController.markSuccess()
         removeLoaders()
         guard let newIndexPaths = newIndexPaths else {
             activeFilter = filter
@@ -154,5 +164,12 @@ extension FeedTableViewController: QuestionListViewModelDelegate {
             self?.loadData(filter: self!.activeFilter)
         })
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension FeedTableViewController: AutoRefreshControllerDelegate {
+    func shouldRefresh() {
+        resetData()
+        loadData(filter: activeFilter)
     }
 }

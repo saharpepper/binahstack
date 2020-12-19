@@ -24,6 +24,11 @@ class AppRouter: Router {
         navigationController.pushViewController(feedTableViewController, animated: false)
     }
     
+    func details(question: QuestionViewModel) {
+        let questionDetailsViewController = QuestionDetailsViewController(question: question)
+        navigationController.pushViewController(questionDetailsViewController, animated: true)
+    }
+    
     #if DEBUG
     private var isTestMode: Bool {
         let arguments = ProcessInfo.processInfo.arguments

@@ -21,17 +21,16 @@ class FeedTableNavigationItem: UINavigationItem {
         }
     }
     private let btnAction: (Filter)->()?
+    private let filterBtn = UIButton(type: .system)
     
     // MARK: - Lifecycle
     init(title: String, filter: Filter, btnAction: @escaping (Filter)->()) {
         self.filter = filter
         self.btnAction = btnAction
         super.init(title: title)
-        let navFilterBtn = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(navFilterBtnClicked))
-        let font = UIFont.boldSystemFont(ofSize: 14.0)
-        [UIControl.State.normal, UIControl.State.highlighted].forEach {
-            navFilterBtn.setTitleTextAttributes([NSAttributedString.Key.font: font], for: $0)
-        }
+        filterBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+        filterBtn.addTarget(self, action: #selector(filterBtnClicked), for: .touchUpInside)
+        let navFilterBtn = UIBarButtonItem(customView: filterBtn)
         rightBarButtonItem = navFilterBtn
     }
     
@@ -41,12 +40,12 @@ class FeedTableNavigationItem: UINavigationItem {
     
     // MARK: - Accessors
     private func setTitle(filter: Filter) {
-        guard let navFilterBtn = rightBarButtonItem else { return }
-        navFilterBtn.title = navTitle(filter: filter)
+        filterBtn.setTitle(navTitle(filter: filter), for: .normal)
+        filterBtn.sizeToFit()
     }
     
     // MARK: - Actions
-    @objc private func navFilterBtnClicked() {
+    @objc private func filterBtnClicked() {
         btnAction(filter.inverted())
     }
     
