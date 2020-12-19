@@ -15,7 +15,7 @@ class AppRouter: Router {
     }
 
     func start() {
-        let questionsTableViewController = ViewController()
-        navigationController.pushViewController(questionsTableViewController, animated: false)
+        let feedTableViewController = FeedTableViewController(router: self)
+        navigationController.pushViewController(feedTableViewController, animated: false)
     }
 }
